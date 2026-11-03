@@ -21,6 +21,7 @@ export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
   const videoConfig = useVideoConfig();
   const style = getStylePackage(episode.themeId);
   const palette = style.theme.palette;
+  const stage = style.chrome === "stage";
   const activeScene =
     episode.scenes.find(
       (scene) =>
@@ -58,6 +59,8 @@ export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
         frame={frame}
       />
 
+      {stage ? null : (
+      <>
       <div
         style={{
           position: "absolute",
@@ -181,11 +184,15 @@ export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
           </div>
         ))}
       </div>
+      </>
+      )}
 
       <NarrationLayer
         captions={episode.captions}
         voiceover={episode.voiceover}
         bgm={episode.bgm}
+        Caption={style.Caption}
+        volume={style.voiceVolume ?? 1}
       />
     </AbsoluteFill>
   );

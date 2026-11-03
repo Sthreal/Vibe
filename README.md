@@ -62,11 +62,13 @@ npm run preview:mock
 
 | Theme ID | 视觉方向 | 首集状态 |
 | --- | --- | --- |
-| `pixel-dark` | 深色终端、像素网格、轨迹面板 | 首集压测 |
+| `pixel-dark` | 奶油底、点阵、像素机器人、心形 HUD、黑底字幕条 | 首集成片 |
 | `vector-minimal` | 明亮留白、几何卡片、矢量关系 | 可用 |
 | `history-flat` | 纸张纹理、印章、案卷式排版 | 可用 |
 
-字幕与 TTS 共用一个 `captions` 时间轴，由 `styles/shared/NarrationLayer.tsx` 统一渲染。切换风格只需要改 episode JSON 中的 `themeId`；`styles/index.ts` 会同时切换 theme token 与场景视觉组件，而底栏橙高亮字幕保持不变。
+字幕与 TTS 共用一个 `captions` 时间轴，由 `styles/shared/NarrationLayer.tsx` 把口播和字幕叠在画面上。`pixel-dark` 换成自己的黑底像素字幕条，关键字仍用橙色标出；另外两套风格继续用共享字幕。
+
+`pixel-dark` 的主题 id 没变，画面改成奶油色复古像素舞台。组件在 `styles/pixel-dark/`：`PixelRobot`（天线、耳机、皇冠、笔记本、剪贴板）、`HeartHUD`（红心、计数、Vibe）、`CaptionBar`、`ArchitectureCompare`（常见架构 / 双层架构），再加上点阵背景和取景框四角。口播时间轴不跟着视觉一起改。
 
 短 mock 与完整一集分别位于：
 
