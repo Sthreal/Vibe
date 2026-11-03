@@ -1,0 +1,30 @@
+{
+  "name": "vibe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion-first Super-agent debugging video workflow",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "preview:mock": "remotion studio src/index.ts --props=episodes/router-worker.mock.json",
+    "render:mock": "remotion render src/index.ts VibeEpisode out/vibe-router-worker.mp4 --props=episodes/router-worker.mock.json",
+    "pipeline:mock": "tsx pipeline/run-mock.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run pipeline:mock"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
