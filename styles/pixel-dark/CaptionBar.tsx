@@ -45,7 +45,7 @@ export const CaptionBar: React.FC<{
           boxSizing: "border-box",
           background: cream.caption,
           border: `4px solid ${cream.ink}`,
-          boxShadow: "0 6px 0 #8a8a8a",
+          boxShadow: "0 0 0 4px #e4d8c4, 6px 6px 0 rgba(60,42,24,.18)",
           padding: "18px 22px 20px",
           display: "flex",
           alignItems: "center",

@@ -5,6 +5,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import {EpisodeClockContext} from "../styles/shared/episode-clock";
 import {NarrationLayer} from "../styles/shared/NarrationLayer";
 import {getStylePackage} from "../styles";
 import {resolveEpisode} from "./resolve-episode";
@@ -46,6 +47,7 @@ export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
   )}:${String(currentSecond % 60).padStart(2, "0")}`;
 
   return (
+    <EpisodeClockContext.Provider value={episode.captions}>
     <AbsoluteFill
       style={{
         background: palette.background,
@@ -195,5 +197,6 @@ export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
         volume={style.voiceVolume ?? 1}
       />
     </AbsoluteFill>
+    </EpisodeClockContext.Provider>
   );
 };

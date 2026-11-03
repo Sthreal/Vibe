@@ -68,7 +68,7 @@ npm run preview:mock
 
 字幕与 TTS 共用一个 `captions` 时间轴，由 `styles/shared/NarrationLayer.tsx` 把口播和字幕叠在画面上。`pixel-dark` 换成自己的黑底像素字幕条，关键字仍用橙色标出；另外两套风格继续用共享字幕。
 
-`pixel-dark` 的主题 id 没变，画面改成奶油色复古像素舞台。组件在 `styles/pixel-dark/`：`PixelRobot`（天线、耳机、皇冠、笔记本、剪贴板）、`HeartHUD`（红心、计数、Vibe）、`CaptionBar`、`ArchitectureCompare`（常见架构 / 双层架构），再加上点阵背景和取景框四角。口播时间轴不跟着视觉一起改。
+`pixel-dark` 的主题 id 没变，画面是奶油点阵舞台。每一句口播切一镜：像素女孩、机器人、鲸鱼在点阵上走、指、眨眼，配虚线箭头、组织图、模型柱、浏览器窗和预算曲线。右上角是红心 HUD（`xNN` 与「小白debug」），底部是黑底橙字字幕。组件在 `styles/pixel-dark/`：`sprites.tsx`、`layouts.tsx`、`beats.ts`、`HeartHUD`、`CaptionBar`、`StageFrame`。口播时间轴不跟着视觉一起改。成片引用已经做过响度处理的 `public/voiceover/router-worker-ep1-loud.mp3`，目标大约 -16 LUFS。
 
 短 mock 与完整一集分别位于：
 
@@ -196,7 +196,7 @@ Vibe/
 - 若未来启用 BGM，数据模型默认 `volumeDb: -26`，保持极弱，并在预览闸中增加人声/BGM 电平检查。
 - `pipeline/05-tts.ts` 仍是不生成文件的管线 stub。真实口播由 `pipeline/tts/generate-edge.ts` 生成，mock 与 ep1 共用这一脚本。
 - mock 的 `voiceover.audioSrc` 指向 `public/voiceover/router-worker.mp3`。
-- ep1 的 `voiceover.audioSrc` 指向 `public/voiceover/router-worker-ep1.mp3`。字幕文本就是口播文本，时间轴首尾相接。
+- ep1 的 `voiceover.audioSrc` 指向 `public/voiceover/router-worker-ep1-loud.mp3`。这是同一条 Yunyang 口播做了压缩和响度对齐，整轨大约 -16 LUFS。字幕文本就是口播文本，时间轴首尾相接。原始分段仍在 `public/voiceover/router-worker-ep1/`，未处理的整轨是 `public/voiceover/router-worker-ep1.mp3`。
 - 逐句音频分别保存在 `public/voiceover/router-worker/` 与 `public/voiceover/router-worker-ep1/`。
 
 ## 常用校验

@@ -1,23 +1,7 @@
 import React from "react";
 import type {StylePackage, VisualSceneProps} from "../types";
-import {ArchitectureCompare} from "./ArchitectureCompare";
 import {CaptionBar} from "./CaptionBar";
-import {
-  BoundarySplit,
-  BudgetMeter,
-  ChecklistTable,
-  ContractCards,
-  EscalateCard,
-  ManyWindows,
-  NeuralColumns,
-  RollbackSteps,
-  RouterChoice,
-  StateLoop,
-  TakeawayChecks,
-  ToolRack,
-  TraceFlow,
-  WorkerEvidence,
-} from "./diagrams";
+import {StageShow} from "./layouts";
 import {cream, PIXEL_FONT} from "./palette";
 import {StageFrame} from "./StageFrame";
 
@@ -40,53 +24,14 @@ const SCORE: Record<string, number> = {
   takeaway: 16,
 };
 
-const PixelScene: React.FC<VisualSceneProps> = ({scene, progress, frame}) => {
+const PixelScene: React.FC<VisualSceneProps> = ({scene}) => {
   const score = SCORE[scene.id] ?? 1;
 
   return (
-    <StageFrame score={score} title={scene.title}>
-      <SceneDiagram scene={scene} progress={progress} frame={frame} />
+    <StageFrame score={score}>
+      <StageShow />
     </StageFrame>
   );
-};
-
-const SceneDiagram: React.FC<VisualSceneProps> = ({scene, progress, frame}) => {
-  switch (scene.id) {
-    case "hook":
-      return <ManyWindows frame={frame} />;
-    case "definition":
-      return <NeuralColumns />;
-    case "misconception":
-      return <ArchitectureCompare progress={progress} />;
-    case "router":
-      return <RouterChoice scene={scene} progress={progress} />;
-    case "worker":
-      return <WorkerEvidence scene={scene} />;
-    case "tools":
-      return <ToolRack frame={frame} />;
-    case "contract":
-      return <ContractCards scene={scene} />;
-    case "boundaries":
-      return <BoundarySplit />;
-    case "loop":
-      return <StateLoop progress={progress} labels={["计划", "执行", "观察", "重试"]} />;
-    case "budget":
-      return <BudgetMeter progress={progress} />;
-    case "escalate":
-      return <EscalateCard scene={scene} />;
-    case "trace":
-      return <TraceFlow frame={frame} />;
-    case "case":
-      return <TraceFlow frame={frame} failed />;
-    case "rollback":
-      return <RollbackSteps progress={progress} />;
-    case "checklist":
-      return <ChecklistTable />;
-    case "takeaway":
-      return <TakeawayChecks progress={progress} labels={scene.bullets} />;
-    default:
-      return <ArchitectureCompare progress={progress} />;
-  }
 };
 
 const pixelDark: StylePackage = {

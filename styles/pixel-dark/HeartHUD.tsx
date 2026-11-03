@@ -41,11 +41,11 @@ export const HeartHUD: React.FC<{
           boxShadow: `0 0 0 3px ${cream.ink}`,
         }}
       />
-      <span style={{color: cream.yellow, fontSize: 28, lineHeight: 1}}>
+      <span style={{color: cream.yellow, fontSize: 24, lineHeight: 1}}>
         {label}
       </span>
-      <span style={{color: cream.white, fontSize: 28, lineHeight: 1}}>
-        Vibe
+      <span style={{color: cream.white, fontSize: 24, lineHeight: 1}}>
+        小白debug
       </span>
     </div>
   );

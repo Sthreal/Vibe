@@ -16,7 +16,7 @@
     "strategy": "tts",
     "status": "ready",
     "voice": "zh-CN-YunyangNeural",
-    "audioSrc": "public/voiceover/router-worker-ep1.mp3"
+    "audioSrc": "public/voiceover/router-worker-ep1-loud.mp3"
   },
   "bgm": {
     "enabled": false,

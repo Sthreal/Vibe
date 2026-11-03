@@ -2,7 +2,6 @@ import React from "react";
 import {cream} from "./palette";
 import {HeartHUD} from "./HeartHUD";
 import {usePixelFont} from "./usePixelFont";
-import {PixelTag} from "./ui";
 
 const SPECKS = [
   {x: 70, y: 240, c: "#f0c9b0"},
@@ -15,9 +14,8 @@ const SPECKS = [
 
 export const StageFrame: React.FC<{
   score: number;
-  title: string;
   children: React.ReactNode;
-}> = ({score, title, children}) => {
+}> = ({score, children}) => {
   usePixelFont();
 
   return (
@@ -53,16 +51,47 @@ export const StageFrame: React.FC<{
         style={{bottom: 18, right: 18, transform: "scale(-1, -1)"}}
       />
       <HeartHUD score={score} />
-      <div style={{position: "absolute", top: 118, left: 48, zIndex: 3}}>
-        <PixelTag text={title} color={cream.panelAlt} size={36} />
-      </div>
       <div
         style={{
           position: "absolute",
-          top: 196,
-          left: 36,
-          right: 36,
-          bottom: 250,
+          top: 108,
+          left: 40,
+          right: 40,
+          height: 4,
+          background: cream.corner,
+          zIndex: 1,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: 248,
+          left: 40,
+          right: 40,
+          height: 4,
+          background: cream.corner,
+          zIndex: 1,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: 242,
+          left: "50%",
+          width: 18,
+          height: 12,
+          marginLeft: -9,
+          background: cream.accent,
+          zIndex: 2,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: 128,
+          left: 28,
+          right: 28,
+          bottom: 270,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
