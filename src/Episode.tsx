@@ -7,6 +7,7 @@ import {
 } from "remotion";
 import {NarrationLayer} from "../styles/shared/NarrationLayer";
 import {getStylePackage} from "../styles";
+import {resolveEpisode} from "./resolve-episode";
 import type {Episode} from "./types";
 
 export interface EpisodeProps {
@@ -14,7 +15,8 @@ export interface EpisodeProps {
   [key: string]: unknown;
 }
 
-export const EpisodeComposition: React.FC<EpisodeProps> = ({episode}) => {
+export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
+  const episode = resolveEpisode(props);
   const frame = useCurrentFrame();
   const videoConfig = useVideoConfig();
   const style = getStylePackage(episode.themeId);

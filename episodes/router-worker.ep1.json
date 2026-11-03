@@ -1,0 +1,631 @@
+{
+  "schemaVersion": 1,
+  "id": "router-worker-super-agent-ep1",
+  "topic": "Router/Worker Super-agent 如何调度与自愈",
+  "title": "路由不是大脑，Worker 也不是手脚",
+  "themeId": "pixel-dark",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSec": 425.7,
+  "durationTargetSec": {
+    "min": 300,
+    "max": 480
+  },
+  "voiceover": {
+    "strategy": "tts",
+    "status": "ready",
+    "voice": "zh-CN-YunyangNeural",
+    "audioSrc": "public/voiceover/router-worker-ep1.mp3"
+  },
+  "bgm": {
+    "enabled": false,
+    "volumeDb": -26
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "from": 0,
+      "durationInFrames": 656,
+      "kicker": "SUPER-AGENT DEBUG / 01",
+      "title": "别急着加 Agent",
+      "body": "任务没人拆、失败没人收，加再多 Agent 也只是把混乱复制一遍。",
+      "bullets": [
+        "Router 分派",
+        "Worker 执行",
+        "状态机兜底"
+      ],
+      "visual": "router-worker"
+    },
+    {
+      "id": "definition",
+      "from": 656,
+      "durationInFrames": 801,
+      "kicker": "定义 / 02",
+      "title": "系统，不是模型",
+      "body": "Super-agent 是一套会调度、会停止、会留下证据的系统，不是更大的模型。",
+      "bullets": [
+        "一个入口",
+        "两个角色",
+        "先写窄"
+      ],
+      "visual": "router-worker"
+    },
+    {
+      "id": "misconception",
+      "from": 1457,
+      "durationInFrames": 529,
+      "kicker": "误区 / 03",
+      "title": "路由不是大脑",
+      "body": "Router 不做开放式思考，Worker 也不替整个系统承担后果。",
+      "bullets": [
+        "窄决策",
+        "窄执行",
+        "明确交接"
+      ],
+      "visual": "router-worker"
+    },
+    {
+      "id": "router",
+      "from": 1986,
+      "durationInFrames": 823,
+      "kicker": "ROUTER / 04",
+      "title": "Router 只做选择",
+      "body": "输入是当前状态和候选动作，输出是下一步，以及选择它的理由。",
+      "bullets": [
+        "读状态",
+        "选动作",
+        "写下理由"
+      ],
+      "visual": "router-worker"
+    },
+    {
+      "id": "worker",
+      "from": 2809,
+      "durationInFrames": 766,
+      "kicker": "WORKER / 05",
+      "title": "Worker 管证据",
+      "body": "每个 Worker 只看见完成本职所需的上下文，并交回可验收的结果。",
+      "bullets": [
+        "受限上下文",
+        "单职责",
+        "可验收"
+      ],
+      "visual": "router-worker"
+    },
+    {
+      "id": "tools",
+      "from": 3575,
+      "durationInFrames": 805,
+      "kicker": "TOOL / 06",
+      "title": "工具只是能力",
+      "body": "工具提供能力。Worker 负责调用并把回执整理成字段，Router 不直接碰工具。",
+      "bullets": [
+        "读文件",
+        "跑命令",
+        "回执入契约"
+      ],
+      "visual": "trace"
+    },
+    {
+      "id": "contract",
+      "from": 4380,
+      "durationInFrames": 800,
+      "kicker": "契约 / 07",
+      "title": "交接要能对账",
+      "body": "上游给出输入契约，下游交回输出契约，中间不靠默契补洞。",
+      "bullets": [
+        "明输入",
+        "明输出",
+        "失败也结构化"
+      ],
+      "visual": "trace"
+    },
+    {
+      "id": "boundaries",
+      "from": 5180,
+      "durationInFrames": 895,
+      "kicker": "边界 / 08",
+      "title": "选择和执行分开",
+      "body": "Router 只选择。它不写最终答案，也不把上一轮的失败藏起来。",
+      "bullets": [
+        "不写答案",
+        "失败可见",
+        "允许停止"
+      ],
+      "visual": "loop"
+    },
+    {
+      "id": "loop",
+      "from": 6075,
+      "durationInFrames": 826,
+      "kicker": "执行环 / 09",
+      "title": "每轮都过状态机",
+      "body": "计划、执行、观察、再决策。状态不前进，循环就必须停。",
+      "bullets": [
+        "计划",
+        "执行",
+        "观察"
+      ],
+      "visual": "loop"
+    },
+    {
+      "id": "budget",
+      "from": 6901,
+      "durationInFrames": 800,
+      "kicker": "预算 / 10",
+      "title": "重试必须封顶",
+      "body": "没有新证据的重试只是在烧预算。次数、时间和工具调用都要有上限。",
+      "bullets": [
+        "次数上限",
+        "时间上限",
+        "新证据"
+      ],
+      "visual": "loop"
+    },
+    {
+      "id": "escalate",
+      "from": 7701,
+      "durationInFrames": 855,
+      "kicker": "升级 / 11",
+      "title": "该停就升级",
+      "body": "不确定、缺权限、缺证据，这三件事交给人，而不是交给下一次采样。",
+      "bullets": [
+        "不确定",
+        "缺权限",
+        "缺证据"
+      ],
+      "visual": "loop"
+    },
+    {
+      "id": "trace",
+      "from": 8556,
+      "durationInFrames": 870,
+      "kicker": "DEBUG / 12",
+      "title": "先看轨迹",
+      "body": "先定位是哪一层断了，再决定要不要改提示词或换模型。",
+      "bullets": [
+        "输入缺失",
+        "工具超时",
+        "结果不可验"
+      ],
+      "visual": "trace"
+    },
+    {
+      "id": "case",
+      "from": 9426,
+      "durationInFrames": 828,
+      "kicker": "案例 / 13",
+      "title": "走一遍失败",
+      "body": "用一次测试没绿的任务，看系统该停在哪，而不是怎样把故事讲圆。",
+      "bullets": [
+        "测试仍失败",
+        "原样重试",
+        "升级人工"
+      ],
+      "visual": "trace"
+    },
+    {
+      "id": "rollback",
+      "from": 10254,
+      "durationInFrames": 892,
+      "kicker": "安全 / 14",
+      "title": "失败要可回滚",
+      "body": "能解释路由、能验证产出、能撤回副作用，系统才敢自动往下走。",
+      "bullets": [
+        "可追溯",
+        "可验收",
+        "可回滚"
+      ],
+      "visual": "takeaway"
+    },
+    {
+      "id": "checklist",
+      "from": 11146,
+      "durationInFrames": 764,
+      "kicker": "落地 / 15",
+      "title": "先写表，再接模型",
+      "body": "先写 Worker 表和状态机，再给写入补上检查点，最后才接模型和工具。",
+      "bullets": [
+        "Worker 表",
+        "状态机",
+        "检查点"
+      ],
+      "visual": "takeaway"
+    },
+    {
+      "id": "takeaway",
+      "from": 11910,
+      "durationInFrames": 861,
+      "kicker": "收束 / 16",
+      "title": "先把边界写清",
+      "body": "先固定契约和轨迹，再考虑要不要增加下一个 Agent。",
+      "bullets": [
+        "写清契约",
+        "记下轨迹",
+        "封顶重试"
+      ],
+      "visual": "takeaway"
+    }
+  ],
+  "captions": [
+    {
+      "from": 0,
+      "durationInFrames": 140,
+      "text": "别急着增加更多 Agent，先看任务是怎么被拆开的。",
+      "highlight": "怎么被拆开"
+    },
+    {
+      "from": 140,
+      "durationInFrames": 166,
+      "text": "系统变慢时，常见原因不是模型不够聪明，而是没人负责收尾。",
+      "highlight": "没人负责收尾"
+    },
+    {
+      "from": 306,
+      "durationInFrames": 181,
+      "text": "加一个新角色之前，先问两句：下一步是谁选的，失败又是谁收的。",
+      "highlight": "失败又是谁收的"
+    },
+    {
+      "from": 487,
+      "durationInFrames": 169,
+      "text": "这一集只讲 Router 怎么调度，Worker 怎么交证据，失败之后怎么停。",
+      "highlight": "失败之后怎么停"
+    },
+    {
+      "from": 656,
+      "durationInFrames": 196,
+      "text": "Super-agent 在这里不是更强的模型，而是会调度、会停、会留下证据的系统。",
+      "highlight": "会留下证据"
+    },
+    {
+      "from": 852,
+      "durationInFrames": 188,
+      "text": "对外可以只有一个入口，对内必须拆成会选择的 Router，和会交付的 Worker。",
+      "highlight": "会交付的 Worker"
+    },
+    {
+      "from": 1040,
+      "durationInFrames": 224,
+      "text": "名字换成编排器或子代理都行。职责不变：一个负责选择，一个负责交付。",
+      "highlight": "一个负责选择"
+    },
+    {
+      "from": 1264,
+      "durationInFrames": 193,
+      "text": "先把这两个角色写窄，再谈记忆和工具。顺序反了，系统就会失控。",
+      "highlight": "系统就会失控"
+    },
+    {
+      "from": 1457,
+      "durationInFrames": 178,
+      "text": "Router 不是大脑，它不负责灵感，只负责在已有选项里选择下一步。",
+      "highlight": "选择下一步"
+    },
+    {
+      "from": 1635,
+      "durationInFrames": 177,
+      "text": "Worker 也不是手脚，它不能只说做完了，还得把可核对的证据交回来。",
+      "highlight": "证据交回来"
+    },
+    {
+      "from": 1812,
+      "durationInFrames": 174,
+      "text": "两边都写成万能助手，边界一旦消失，你就不知道该查哪一层。",
+      "highlight": "该查哪一层"
+    },
+    {
+      "from": 1986,
+      "durationInFrames": 202,
+      "text": "Router 读的是当前状态：目标、已完成步骤、还缺的证据，以及剩余预算。",
+      "highlight": "当前状态"
+    },
+    {
+      "from": 2188,
+      "durationInFrames": 179,
+      "text": "它的输出不是一篇长文，而是一个动作：调用哪个 Worker，或者立刻停止。",
+      "highlight": "一个动作"
+    },
+    {
+      "from": 2367,
+      "durationInFrames": 223,
+      "text": "每次选择都要留下理由。没有理由的路由，事后无法复盘，也没法判断选错没有。",
+      "highlight": "留下理由"
+    },
+    {
+      "from": 2590,
+      "durationInFrames": 219,
+      "text": "Router 不碰工具，也不改写最终答案。它只决定谁来做，以及为什么是现在做。",
+      "highlight": "为什么是现在做"
+    },
+    {
+      "from": 2809,
+      "durationInFrames": 215,
+      "text": "Worker 只看受限上下文。完成本职用得到的材料才放进来，其余一律不给。",
+      "highlight": "受限上下文"
+    },
+    {
+      "from": 3024,
+      "durationInFrames": 208,
+      "text": "一个 Worker 只做一件窄事：检索资料、修改文件、运行测试，或核对某条主张。",
+      "highlight": "一件窄事"
+    },
+    {
+      "from": 3232,
+      "durationInFrames": 184,
+      "text": "交回的结果必须可验收：改了哪几行，退出码是多少，引用了哪一段原文。",
+      "highlight": "必须可验收"
+    },
+    {
+      "from": 3416,
+      "durationInFrames": 159,
+      "text": "如果它只回复已经处理好了，Router 就没有依据进入下一步。",
+      "highlight": "没有依据"
+    },
+    {
+      "from": 3575,
+      "durationInFrames": 214,
+      "text": "工具不是 Worker。工具只提供能力，比如读文件、跑命令，或者查询网页。",
+      "highlight": "工具不是 Worker"
+    },
+    {
+      "from": 3789,
+      "durationInFrames": 170,
+      "text": "由 Worker 决定怎么调用工具，再把回执整理成契约里要求的字段。",
+      "highlight": "契约里要求的字段"
+    },
+    {
+      "from": 3959,
+      "durationInFrames": 219,
+      "text": "超时、没有权限、输出为空，都是回执。不能被模型悄悄说成已经成功。",
+      "highlight": "都是回执"
+    },
+    {
+      "from": 4178,
+      "durationInFrames": 202,
+      "text": "Router 不直接调用工具。它只根据上一轮回执，决定还要不要再派 Worker。",
+      "highlight": "不直接调用工具"
+    },
+    {
+      "from": 4380,
+      "durationInFrames": 205,
+      "text": "Router 和 Worker 之间要有契约。输入、输出和失败码，都要事先写明。",
+      "highlight": "事先写明"
+    },
+    {
+      "from": 4585,
+      "durationInFrames": 204,
+      "text": "契约越窄，系统越稳。缺一个字段，就停在这一步，不要让模型自己补。",
+      "highlight": "缺一个字段"
+    },
+    {
+      "from": 4789,
+      "durationInFrames": 207,
+      "text": "成功和失败使用同一种结构。失败也是结果，它表示这一步没有新证据。",
+      "highlight": "没有新证据"
+    },
+    {
+      "from": 4996,
+      "durationInFrames": 184,
+      "text": "于是日志可以对账：发出去的任务，收回来的证据，两边到底对不对得上。",
+      "highlight": "可以对账"
+    },
+    {
+      "from": 5180,
+      "durationInFrames": 252,
+      "text": "Router 不该自己写最终答案。它一旦又选又做，失败时就分不清是决策错还是执行错。",
+      "highlight": "不该自己写最终答案"
+    },
+    {
+      "from": 5432,
+      "durationInFrames": 223,
+      "text": "Router 不该读到全部工具的原始输出。摘要和状态就够了，原文留给对应的 Worker。",
+      "highlight": "原始输出"
+    },
+    {
+      "from": 5655,
+      "durationInFrames": 230,
+      "text": "不要把上一轮失败藏起来。下一轮的输入里必须看得到错误，否则它会重复同一次选择。",
+      "highlight": "必须看得到错误"
+    },
+    {
+      "from": 5885,
+      "durationInFrames": 190,
+      "text": "也不要在提示词里写“无论如何都要给出答案”。系统必须被允许停下来。",
+      "highlight": "被允许停下来"
+    },
+    {
+      "from": 6075,
+      "durationInFrames": 217,
+      "text": "能自愈的系统，把一轮工作写成状态机：计划、执行、观察，然后再决策。",
+      "highlight": "状态机"
+    },
+    {
+      "from": 6292,
+      "durationInFrames": 196,
+      "text": "计划阶段只产生下一步，不产生最终答案，避免一边思考一边改外部世界。",
+      "highlight": "只产生下一步"
+    },
+    {
+      "from": 6488,
+      "durationInFrames": 192,
+      "text": "观察阶段读取回执：文件变了没有，测试绿了没有，状态到底有没有前进。",
+      "highlight": "有没有前进"
+    },
+    {
+      "from": 6680,
+      "durationInFrames": 221,
+      "text": "状态没有前进，就不能装成进入了下一轮。先记下原因，再决定重试还是停。",
+      "highlight": "先记下原因"
+    },
+    {
+      "from": 6901,
+      "durationInFrames": 221,
+      "text": "重试如果没有新证据，就只是在消耗预算。同一份报错，再跑十次也不会变好。",
+      "highlight": "消耗预算"
+    },
+    {
+      "from": 7122,
+      "durationInFrames": 203,
+      "text": "给每一轮写上预算：最多几次重试，多少次工具调用，以及多长的墙钟时间。",
+      "highlight": "写上预算"
+    },
+    {
+      "from": 7325,
+      "durationInFrames": 201,
+      "text": "预算一旦耗尽，状态机进入失败终态，而不是再向模型要一句更乐观的话。",
+      "highlight": "失败终态"
+    },
+    {
+      "from": 7526,
+      "durationInFrames": 175,
+      "text": "封顶不是消极。它把无限循环变成一次可以被解释的停止。",
+      "highlight": "可以被解释的停止"
+    },
+    {
+      "from": 7701,
+      "durationInFrames": 212,
+      "text": "有三类情况应该升级给人：模型不确定，工具没有权限，证据之间互相矛盾。",
+      "highlight": "升级给人"
+    },
+    {
+      "from": 7913,
+      "durationInFrames": 230,
+      "text": "升级时要带上上下文：当前目标，试过的路径，最后一条错误，以及希望人做的决定。",
+      "highlight": "带上上下文"
+    },
+    {
+      "from": 8143,
+      "durationInFrames": 234,
+      "text": "人做出的决定要写回状态。下一轮 Router 看到的是事实，不是一段被丢掉的聊天。",
+      "highlight": "写回状态"
+    },
+    {
+      "from": 8377,
+      "durationInFrames": 179,
+      "text": "升级不是失败。该停的时候继续采样，才会把错误越写越深。",
+      "highlight": "不是失败"
+    },
+    {
+      "from": 8556,
+      "durationInFrames": 213,
+      "text": "Debug 的时候先看轨迹，不要先怪模型。很多故障是交接断了，不是文笔不好。",
+      "highlight": "先看轨迹"
+    },
+    {
+      "from": 8769,
+      "durationInFrames": 208,
+      "text": "顺着三条线往下读：路由当时看到的输入，Worker 交回的产出，工具返回的回执。",
+      "highlight": "三条线"
+    },
+    {
+      "from": 8977,
+      "durationInFrames": 227,
+      "text": "输入缺了字段，这次调用就不该发出。工具超时，就是执行层没有在预算内返回。",
+      "highlight": "输入缺了字段"
+    },
+    {
+      "from": 9204,
+      "durationInFrames": 222,
+      "text": "结果无法验证，就是 Worker 没有按契约交出证据。这三件事的修法完全不同。",
+      "highlight": "修法完全不同"
+    },
+    {
+      "from": 9426,
+      "durationInFrames": 201,
+      "text": "举一个具体的例子。任务是修复失败的测试，Router 把改代码交给 Worker。",
+      "highlight": "失败的测试"
+    },
+    {
+      "from": 9627,
+      "durationInFrames": 207,
+      "text": "Worker 改完了文件，测试却仍然是红的。动作已经发生，状态却没有前进。",
+      "highlight": "没有前进"
+    },
+    {
+      "from": 9834,
+      "durationInFrames": 215,
+      "text": "如果下一次拿到的还是同一份报错，就不要改提示词碰运气，把这条轨迹升级给人。",
+      "highlight": "同一份报错"
+    },
+    {
+      "from": 10049,
+      "durationInFrames": 205,
+      "text": "人指出真正该改的断言之后，新证据写回状态，Router 才能合法地再派一轮。",
+      "highlight": "新证据写回状态"
+    },
+    {
+      "from": 10254,
+      "durationInFrames": 219,
+      "text": "自动执行一定要能撤回。改过的文件，发出的请求，都要知道怎么回到上一步。",
+      "highlight": "能撤回"
+    },
+    {
+      "from": 10473,
+      "durationInFrames": 235,
+      "text": "没有回滚点的 Worker，不应该拿到写权限。只读的核对可以大胆做，写入必须小步提交。",
+      "highlight": "小步提交"
+    },
+    {
+      "from": 10708,
+      "durationInFrames": 229,
+      "text": "每次写入都对应一个可以撤销的检查点。做不到这一点，就不要让它自动连续执行。",
+      "highlight": "可以撤销的检查点"
+    },
+    {
+      "from": 10937,
+      "durationInFrames": 209,
+      "text": "可追溯，可验收，可回滚。缺了任何一件，它就还只是一组会说话的脚本。",
+      "highlight": "可回滚"
+    },
+    {
+      "from": 11146,
+      "durationInFrames": 194,
+      "text": "落地时先写一张表：有哪些 Worker，每个的输入、输出和失败码分别是什么。",
+      "highlight": "先写一张表"
+    },
+    {
+      "from": 11340,
+      "durationInFrames": 190,
+      "text": "再写状态机有哪些状态，哪些边允许重试，哪些边必须升级给人。",
+      "highlight": "哪些边允许重试"
+    },
+    {
+      "from": 11530,
+      "durationInFrames": 179,
+      "text": "然后给写操作补上检查点。没有检查点的步骤，先保持只读。",
+      "highlight": "先保持只读"
+    },
+    {
+      "from": 11709,
+      "durationInFrames": 201,
+      "text": "最后才接上模型和工具。模型可以更换，这张表不应该跟着一起改掉。",
+      "highlight": "模型可以更换"
+    },
+    {
+      "from": 11910,
+      "durationInFrames": 221,
+      "text": "所以下一次系统变慢，不要先增加 Agent。先把 Router 和 Worker 的契约写出来。",
+      "highlight": "不要先增加"
+    },
+    {
+      "from": 12131,
+      "durationInFrames": 190,
+      "text": "给每一轮加上预算，给每一次失败留下轨迹，给每一次写入留下回滚点。",
+      "highlight": "留下回滚点"
+    },
+    {
+      "from": 12321,
+      "durationInFrames": 228,
+      "text": "能解释当时为什么选了这条路，能核对交回来的证据，能安全地停下来，才算 Super-agent。",
+      "highlight": "安全地停下来"
+    },
+    {
+      "from": 12549,
+      "durationInFrames": 222,
+      "text": "路由不是大脑，Worker 也不是手脚。它们是一条可以被检查、也可以被叫停的流水线。",
+      "highlight": "可以被检查"
+    }
+  ]
+}
