@@ -5,8 +5,10 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import {EpisodeClockContext} from "../styles/shared/episode-clock";
 import {NarrationLayer} from "../styles/shared/NarrationLayer";
 import {getStylePackage} from "../styles";
+import {resolveEpisode} from "./resolve-episode";
 import type {Episode} from "./types";
 
 export interface EpisodeProps {
@@ -14,11 +16,13 @@ export interface EpisodeProps {
   [key: string]: unknown;
 }
 
-export const EpisodeComposition: React.FC<EpisodeProps> = ({episode}) => {
+export const EpisodeComposition: React.FC<EpisodeProps> = (props) => {
+  const episode = resolveEpisode(props);
   const frame = useCurrentFrame();
   const videoConfig = useVideoConfig();
   const style = getStylePackage(episode.themeId);
   const palette = style.theme.palette;
+  const stage = style.chrome === "stage";
   const activeScene =
     episode.scenes.find(
       (scene) =>
@@ -43,6 +47,7 @@ export const EpisodeComposition: React.FC<EpisodeProps> = ({episode}) => {
   )}:${String(currentSecond % 60).padStart(2, "0")}`;
 
   return (
+    <EpisodeClockContext.Provider value={episode.captions}>
     <AbsoluteFill
       style={{
         background: palette.background,
@@ -56,6 +61,8 @@ export const EpisodeComposition: React.FC<EpisodeProps> = ({episode}) => {
         frame={frame}
       />
 
+      {stage ? null : (
+      <>
       <div
         style={{
           position: "absolute",
@@ -179,12 +186,17 @@ export const EpisodeComposition: React.FC<EpisodeProps> = ({episode}) => {
           </div>
         ))}
       </div>
+      </>
+      )}
 
       <NarrationLayer
         captions={episode.captions}
         voiceover={episode.voiceover}
         bgm={episode.bgm}
+        Caption={style.Caption}
+        volume={style.voiceVolume ?? 1}
       />
     </AbsoluteFill>
+    </EpisodeClockContext.Provider>
   );
 };

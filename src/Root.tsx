@@ -5,6 +5,7 @@ import {
 } from "remotion";
 import mockEpisodeJson from "../episodes/router-worker.mock.json";
 import {EpisodeComposition, type EpisodeProps} from "./Episode";
+import {resolveEpisode} from "./resolve-episode";
 import type {Episode} from "./types";
 import {validateEpisode} from "./validate-episode";
 
@@ -14,15 +15,15 @@ validateEpisode(mockEpisode);
 export const calculateEpisodeMetadata: CalculateMetadataFunction<
   EpisodeProps
 > = ({props}) => {
-  validateEpisode(props.episode);
+  const episode = resolveEpisode(props);
+  validateEpisode(episode);
 
   return {
-    durationInFrames: Math.round(
-      props.episode.durationSec * props.episode.fps,
-    ),
-    fps: props.episode.fps,
-    width: props.episode.width,
-    height: props.episode.height,
+    durationInFrames: Math.round(episode.durationSec * episode.fps),
+    fps: episode.fps,
+    width: episode.width,
+    height: episode.height,
+    props: {episode},
   };
 };
 

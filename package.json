@@ -8,9 +8,13 @@
     "preview:mock": "remotion studio src/index.ts --props=episodes/router-worker.mock.json",
     "render:mock": "remotion render src/index.ts VibeEpisode out/vibe-router-worker.mp4 --props=episodes/router-worker.mock.json",
     "tts:mock": "node --import tsx pipeline/tts/generate-edge.ts",
+    "preview:ep1": "remotion studio src/index.ts --props=episodes/router-worker.ep1.json",
+    "render:ep1": "remotion render src/index.ts VibeEpisode out/vibe-router-worker-ep1.mp4 --props=episodes/router-worker.ep1.json",
+    "tts:ep1": "node --import tsx pipeline/tts/generate-edge.ts --episode episodes/router-worker.ep1.json --segments public/voiceover/router-worker-ep1 --combined public/voiceover/router-worker-ep1.mp3 --align groups",
     "pipeline:mock": "node --import tsx pipeline/run-mock.ts",
+    "validate:episodes": "node --import tsx pipeline/validate-episodes.ts",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run pipeline:mock"
+    "check": "npm run typecheck && npm run pipeline:mock && npm run validate:episodes"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",

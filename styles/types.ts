@@ -1,5 +1,5 @@
 import type {ComponentType} from "react";
-import type {EpisodeScene, ThemeId} from "../src/types";
+import type {CaptionCue, EpisodeScene, ThemeId} from "../src/types";
 
 export interface StylePalette {
   background: string;
@@ -28,4 +28,8 @@ export interface VisualSceneProps {
 export interface StylePackage {
   theme: StyleTheme;
   SceneVisual: ComponentType<VisualSceneProps>;
+  /** overlay keeps the shared title chrome; stage lets the pack own the frame. */
+  chrome?: "overlay" | "stage";
+  Caption?: ComponentType<{captions: CaptionCue[]}>;
+  voiceVolume?: number;
 }
