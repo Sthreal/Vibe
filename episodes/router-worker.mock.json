@@ -7,15 +7,16 @@
   "width": 1080,
   "height": 1920,
   "fps": 30,
-  "durationSec": 45,
+  "durationSec": 33.866667,
   "durationTargetSec": {
     "min": 300,
     "max": 480
   },
   "voiceover": {
     "strategy": "tts",
-    "status": "mocked",
-    "voice": "zh-CN-female-debug"
+    "status": "ready",
+    "voice": "zh-CN-YunyangNeural",
+    "audioSrc": "public/voiceover/router-worker.mp3"
   },
   "bgm": {
     "enabled": false,
@@ -25,100 +26,120 @@
     {
       "id": "hook",
       "from": 0,
-      "durationInFrames": 150,
+      "durationInFrames": 113,
       "kicker": "SUPER-AGENT DEBUG / 01",
       "title": "别急着加 Agent",
       "body": "先问：任务是谁拆的，失败又是谁负责收尾？",
-      "bullets": ["Router 分派", "Worker 执行", "状态机兜底"],
+      "bullets": [
+        "Router 分派",
+        "Worker 执行",
+        "状态机兜底"
+      ],
       "visual": "router-worker"
     },
     {
       "id": "anatomy",
-      "from": 150,
-      "durationInFrames": 240,
+      "from": 113,
+      "durationInFrames": 181,
       "kicker": "结构 / 02",
       "title": "Router 管决策，Worker 管证据",
       "body": "Router 只决定下一步；Worker 在受限上下文里完成任务并交回可验证结果。",
-      "bullets": ["窄职责", "明输入", "可验收输出"],
+      "bullets": [
+        "窄职责",
+        "明输入",
+        "可验收输出"
+      ],
       "visual": "router-worker"
     },
     {
       "id": "loop",
-      "from": 390,
-      "durationInFrames": 270,
+      "from": 294,
+      "durationInFrames": 203,
       "kicker": "执行环 / 03",
       "title": "每轮都要经过状态机",
       "body": "计划、执行、观察、重试。没有新证据时，重试次数必须封顶。",
-      "bullets": ["记录原因", "限制预算", "升级人工"],
+      "bullets": [
+        "记录原因",
+        "限制预算",
+        "升级人工"
+      ],
       "visual": "loop"
     },
     {
       "id": "trace",
-      "from": 660,
-      "durationInFrames": 270,
+      "from": 497,
+      "durationInFrames": 203,
       "kicker": "Debug / 04",
       "title": "先看轨迹，不要先怪模型",
       "body": "检查路由输入、Worker 产出和工具回执，定位问题发生在哪一层。",
-      "bullets": ["输入缺失", "工具超时", "结果不可验"],
+      "bullets": [
+        "输入缺失",
+        "工具超时",
+        "结果不可验"
+      ],
       "visual": "trace"
     },
     {
       "id": "takeaway",
-      "from": 930,
-      "durationInFrames": 420,
+      "from": 700,
+      "durationInFrames": 316,
       "kicker": "收束 / 05",
       "title": "可观测，才算 Agent",
       "body": "能解释路由、能验证产出、能安全失败，系统才具备真正的工作流能力。",
-      "bullets": ["Router: 可追溯", "Worker: 可验收", "系统: 可回滚"],
+      "bullets": [
+        "Router: 可追溯",
+        "Worker: 可验收",
+        "系统: 可回滚"
+      ],
       "visual": "takeaway"
     }
   ],
   "captions": [
     {
       "from": 0,
-      "durationInFrames": 120,
+      "durationInFrames": 140,
       "text": "别急着增加更多 Agent，先看任务是怎么被拆开的。",
       "highlight": "怎么被拆开"
     },
     {
-      "from": 120,
-      "durationInFrames": 150,
+      "from": 140,
+      "durationInFrames": 103,
       "text": "Router 不是大脑，它负责选择下一步。",
       "highlight": "选择下一步"
     },
     {
-      "from": 270,
-      "durationInFrames": 180,
+      "from": 243,
+      "durationInFrames": 122,
       "text": "Worker 也不是手脚，它要带着证据交回结果。",
       "highlight": "带着证据"
     },
     {
-      "from": 450,
-      "durationInFrames": 180,
+      "from": 365,
+      "durationInFrames": 145,
       "text": "拆任务、执行、验收，每一步都必须有明确边界。",
       "highlight": "明确边界"
     },
     {
-      "from": 630,
-      "durationInFrames": 180,
+      "from": 510,
+      "durationInFrames": 121,
       "text": "失败后先记录原因，再决定重试还是升级。",
       "highlight": "记录原因"
     },
     {
-      "from": 810,
-      "durationInFrames": 180,
+      "from": 631,
+      "durationInFrames": 110,
       "text": "重试没有新证据，就只是在消耗预算。",
       "highlight": "消耗预算"
     },
     {
-      "from": 990,
-      "durationInFrames": 180,
+      "from": 741,
+      "durationInFrames": 130,
       "text": "Debug 先看轨迹：输入、产出、工具回执。",
       "highlight": "看轨迹"
     },
     {
-      "from": 1170,
-      "durationInFrames": 180,
+      "from": 871,
+      "durationInFrames": 145,
       "text": "可追溯、可验收、可回滚，才算真正的 Agent。",
       "highlight": "可回滚"
     }

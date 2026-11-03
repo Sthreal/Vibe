@@ -7,7 +7,8 @@
     "studio": "remotion studio src/index.ts",
     "preview:mock": "remotion studio src/index.ts --props=episodes/router-worker.mock.json",
     "render:mock": "remotion render src/index.ts VibeEpisode out/vibe-router-worker.mp4 --props=episodes/router-worker.mock.json",
-    "pipeline:mock": "tsx pipeline/run-mock.ts",
+    "tts:mock": "node --import tsx pipeline/tts/generate-edge.ts",
+    "pipeline:mock": "node --import tsx pipeline/run-mock.ts",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run pipeline:mock"
   },
