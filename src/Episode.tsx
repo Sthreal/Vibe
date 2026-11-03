@@ -11,6 +11,7 @@ import type {Episode} from "./types";
 
 export interface EpisodeProps {
   episode: Episode;
+  [key: string]: unknown;
 }
 
 export const EpisodeComposition: React.FC<EpisodeProps> = ({episode}) => {

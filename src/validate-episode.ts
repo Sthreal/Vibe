@@ -1,6 +1,9 @@
 import {THEME_IDS, type Episode} from "./types";
 
-const assert = (condition: unknown, message: string): asserts condition => {
+const assert: (
+  condition: unknown,
+  message: string,
+) => asserts condition = (condition, message) => {
   if (!condition) {
     throw new Error(`[episode] ${message}`);
   }
